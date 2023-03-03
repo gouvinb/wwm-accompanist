@@ -1,6 +1,5 @@
 import Settings_gradle.ModuleType.APP
 import Settings_gradle.ModuleType.LIBRARY
-import Settings_gradle.ModuleType.SAMPLE
 
 enum class ModuleType(private val parentDirName: String) {
     /**
@@ -85,16 +84,20 @@ pluginManagement {
 //     }
 // }
 
-rootProject.name = "kotlin-multiplatform-project-template"
+rootProject.name = "wwm-accompanist"
 rootProject.buildFileName = "build.gradle.kts"
 
 // App
 includeProject("application", APP)
 
 // Libs
-includeProject("lib-a", LIBRARY)
-// includeProject("lib-b", LIBRARY)
+includeProject("audio", LIBRARY)
+includeProject("backlight", LIBRARY)
+includeProject("bar", LIBRARY)
+includeProject("launcher", LIBRARY)
+includeProject("screenshot", LIBRARY)
+includeProject("theme", LIBRARY)
+includeProject("wallpaper", LIBRARY)
 
 // samples
-includeProject("example-a", SAMPLE)
-// includeProject("example-b", SAMPLE)
+// includeProject("example-a", SAMPLE)

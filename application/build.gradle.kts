@@ -1,26 +1,19 @@
-import io.github.kotlin.multiplaform.template.gradle.project.utils.SelectedTarget
-import io.github.kotlin.multiplaform.template.gradle.project.utils.SystemInfo.appleTargets
-import io.github.kotlin.multiplaform.template.gradle.project.utils.SystemInfo.linuxTargets
-import io.github.kotlin.multiplaform.template.gradle.project.utils.SystemInfo.mingwTargets
-import io.github.kotlin.multiplaform.template.gradle.project.utils.extenstion.configureOrCreateNativePlatforms
-import io.github.kotlin.multiplaform.template.gradle.project.utils.extenstion.createSourceSet
-import org.gradle.api.tasks.testing.logging.TestExceptionFormat
-import org.gradle.api.tasks.testing.logging.TestLogEvent
+import io.github.gouvinb.wwmaccompanist.gradle.project.utils.SelectedTarget
+import io.github.gouvinb.wwmaccompanist.gradle.project.utils.SystemInfo.linuxTargets
+import io.github.gouvinb.wwmaccompanist.gradle.project.utils.extenstion.configureOrCreateNativePlatforms
+import io.github.gouvinb.wwmaccompanist.gradle.project.utils.extenstion.createSourceSet
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
-import org.jetbrains.kotlin.gradle.targets.js.KotlinJsTarget
-import org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import java.nio.charset.StandardCharsets
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     kotlin("multiplatform")
 
-    id("io.github.kotlin.multiplaform.template.gradle.project.base.dokka")
-    id("io.github.kotlin.multiplaform.template.gradle.project.base.spotless.java")
+    id("io.github.gouvinb.wwmaccompanist.gradle.project.base.main")
+    id("io.github.gouvinb.wwmaccompanist.gradle.project.base.dokka")
+    id("io.github.gouvinb.wwmaccompanist.gradle.project.base.spotless.java")
 }
 
-group = "io.github.kotlin.multiplaform.template.application"
+group = "io.github.gouvinb.wwmaccompanist.application"
 version = "0.1.0"
 
 repositories {
@@ -34,23 +27,10 @@ repositories {
  *
  * ```
  *   common
- *   |-- jvm
- *   |-- js
  *   '-- native
- *       |- unix
- *       |   |-- apple
- *       |   |   |-- iosArm64
- *       |   |   |-- iosX64
- *       |   |   |-- macosX64
- *       |   |   |-- tvosArm64
- *       |   |   |-- tvosX64
- *       |   |   |-- watchosArm32
- *       |   |   |-- watchosArm64
- *       |   |   '-- watchosX86
- *       |   '-- linux
- *       |       '-- linuxX64
- *       '-- mingw
- *           '-- mingwX64
+ *       '- unix
+ *           '-- linux
+ *               '-- linuxX64
  * ```
  *
  * The `nonJvm` source set excludes that platform.
@@ -66,16 +46,10 @@ kotlin {
                     binaries {
                         executable {
                             baseName = rootProject.name
-                            entryPoint = "io.github.kotlin.multiplaform.template.application.main"
+                            entryPoint = "io.github.gouvinb.wwmaccompanist.application.main"
                         }
                     }
                 }
-                is KotlinJsTarget -> kotlinTarget.apply {
-                    binaries {
-                        executable()
-                    }
-                }
-                is KotlinJvmTarget -> kotlinTarget.apply { /* no-op */ }
                 else -> { /* no-op */ }
             }
         }
@@ -85,7 +59,13 @@ kotlin {
 
         val commonMain by getting {
             dependencies {
-                implementation(project(":library-lib-a"))
+                implementation(project(":library-audio"))
+                implementation(project(":library-backlight"))
+                implementation(project(":library-bar"))
+                implementation(project(":library-launcher"))
+                implementation(project(":library-screenshot"))
+                implementation(project(":library-theme"))
+                implementation(project(":library-wallpaper"))
             }
         }
         val commonTest by getting {
@@ -110,64 +90,18 @@ kotlin {
             dependsOn(commonTest)
         }
 
-        if (selectedTarget.matchWith(SelectedTarget.JVM) || selectedTarget.matchWith(SelectedTarget.NATIVE)) {
-            val jvmMain by getting {
-            }
-            val jvmTest by getting {
-                kotlin.srcDir("src/jvmTest/hashFunctions")
-                dependencies {}
-            }
-        }
-
-        if (selectedTarget.matchWith(SelectedTarget.JS)) {
-            val jsMain by getting {
-                dependsOn(nonJvmMain)
-                dependsOn(nonAppleMain)
-            }
-            val jsTest by getting {
-                dependsOn(nonJvmTest)
-            }
-        }
-
         if (selectedTarget.matchWith(SelectedTarget.NATIVE)) {
             createSourceSet("nativeMain", parent = nonJvmMain) { nativeMain ->
-                createSourceSet("mingwMain", parent = nativeMain, children = mingwTargets) { mingwMain ->
-                    mingwMain.dependsOn(nonAppleMain)
-                }
                 createSourceSet("unixMain", parent = nativeMain) { unixMain ->
                     createSourceSet("linuxMain", parent = unixMain, children = linuxTargets) { linuxMain ->
                         linuxMain.dependsOn(nonAppleMain)
                     }
-                    createSourceSet("appleMain", parent = unixMain, children = appleTargets)
                 }
             }
 
-            createSourceSet("nativeTest", parent = commonTest, children = mingwTargets + linuxTargets) { nativeTest ->
+            createSourceSet("nativeTest", parent = commonTest, children = linuxTargets) { nativeTest ->
                 nativeTest.dependsOn(nonJvmTest)
-                createSourceSet("appleTest", parent = nativeTest, children = appleTargets)
             }
         }
-    }
-}
-
-tasks.withType<KotlinCompile>().configureEach {
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
-        @Suppress("SuspiciousCollectionReassignment")
-        freeCompilerArgs += "-Xjvm-default=all"
-    }
-}
-
-tasks.withType<JavaCompile> {
-    options.encoding = StandardCharsets.UTF_8.toString()
-    sourceCompatibility = JavaVersion.VERSION_11.toString()
-    targetCompatibility = JavaVersion.VERSION_11.toString()
-}
-
-tasks.withType<Test> {
-    testLogging {
-        events(TestLogEvent.STARTED, TestLogEvent.PASSED, TestLogEvent.SKIPPED, TestLogEvent.FAILED)
-        exceptionFormat = TestExceptionFormat.FULL
-        showStandardStreams = false
     }
 }

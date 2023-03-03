@@ -1,14 +1,9 @@
-import org.gradle.api.tasks.testing.logging.TestExceptionFormat
-import org.gradle.api.tasks.testing.logging.TestLogEvent
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import java.nio.charset.StandardCharsets
-
 plugins {
     `kotlin-dsl`
     `java-gradle-plugin`
 }
 
-group = "io.github.kotlin.multiplaform.template.gradle"
+group = "io.github.gouvinb.wwmaccompanist.gradle"
 
 dependencies {
     implementation(libs.android.gradlePlugin)
@@ -19,29 +14,26 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        // register("javaApplication") {
-        //     id = "io.github.kotlin.multiplaform.template.gradle.project.application.java"
-        //     implementationClass = "io.github.kotlin.multiplaform.template.gradle.project.application.JavaApplicationPlugin"
-        // }
-        // register("androidApplication") {
-        //     id = "io.github.kotlin.multiplaform.template.gradle.project.application.android"
-        //     implementationClass = "io.github.kotlin.multiplaform.template.gradle.project.application.AndroidApplicationPlugin"
-        // }
+        // Main
+        register("main") {
+            id = "io.github.gouvinb.wwmaccompanist.gradle.project.base.main"
+            implementationClass = "io.github.gouvinb.wwmaccompanist.gradle.project.base.MainPlugin"
+        }
 
         // Dokka
         register("dokka") {
-            id = "io.github.kotlin.multiplaform.template.gradle.project.base.dokka"
-            implementationClass = "io.github.kotlin.multiplaform.template.gradle.project.base.DokkaPlugin"
+            id = "io.github.gouvinb.wwmaccompanist.gradle.project.base.dokka"
+            implementationClass = "io.github.gouvinb.wwmaccompanist.gradle.project.base.DokkaPlugin"
         }
 
         // Spotless
         register("javaSpotless") {
-            id = "io.github.kotlin.multiplaform.template.gradle.project.base.spotless.java"
-            implementationClass = "io.github.kotlin.multiplaform.template.gradle.project.base.SpotlessJavaPlugin"
+            id = "io.github.gouvinb.wwmaccompanist.gradle.project.base.spotless.java"
+            implementationClass = "io.github.gouvinb.wwmaccompanist.gradle.project.base.SpotlessJavaPlugin"
         }
         register("androidSpotless") {
-            id = "io.github.kotlin.multiplaform.template.gradle.project.base.spotless.android"
-            implementationClass = "io.github.kotlin.multiplaform.template.gradle.project.base.SpotlessAndroidPlugin"
+            id = "io.github.gouvinb.wwmaccompanist.gradle.project.base.spotless.android"
+            implementationClass = "io.github.gouvinb.wwmaccompanist.gradle.project.base.SpotlessAndroidPlugin"
         }
     }
 }
