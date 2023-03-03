@@ -1,0 +1,49 @@
+name: Crash Report
+description: File a crash report
+title: "[Crash]: "
+labels: ["bug", "triage"]
+assignees:
+  - gouvinb
+body:
+  - type: dropdown
+    id: version
+    attributes:
+      label: Version
+      description: What version of our software are you running?
+      options:
+        - 0.1.0
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the bug.
+      render: markdown
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Step(s) to reproduce
+      render: markdown
+    value: |
+      1.
+      2.
+      3.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      render: shell
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/gouvinb/wwm-accompanist/blob/master/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
