@@ -1,5 +1,6 @@
 import Settings_gradle.ModuleType.APP
 import Settings_gradle.ModuleType.LIBRARY
+import java.util.*
 
 enum class ModuleType(private val parentDirName: String) {
     /**
@@ -21,7 +22,7 @@ enum class ModuleType(private val parentDirName: String) {
 
     fun pathStrProject() = "$parentDirName/"
 
-    fun lowercase() = toString().toLowerCase()
+    fun lowercase() = toString().lowercase(Locale.getDefault())
 
     companion object {
         private val CONSTANTS = HashMap<Any, ModuleType>()
@@ -64,7 +65,6 @@ fun includeProject(path: String, typeOfModule: ModuleType) {
 
 
 pluginManagement {
-    @Suppress("UnstableApiUsage")
     includeBuild("build-logic")
     repositories {
         google()
