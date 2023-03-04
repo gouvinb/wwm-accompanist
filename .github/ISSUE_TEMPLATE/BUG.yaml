@@ -27,9 +27,9 @@ body:
     attributes:
       label: Is this a regression ?
       options:
+        - I don't know (Default)
         - "Yes"
         - "No"
-        - I don't know (Default)
     validations:
       required: true
   - type: textarea

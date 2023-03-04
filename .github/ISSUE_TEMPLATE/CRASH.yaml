@@ -27,10 +27,10 @@ body:
     attributes:
       label: Step(s) to reproduce
       render: markdown
-    value: |
-      1.
-      2.
-      3.
+      value: |
+        1.
+        2.
+        3.
     validations:
       required: true
   - type: textarea

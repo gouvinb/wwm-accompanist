@@ -1,6 +1,6 @@
-name: Refactor request
-description: File a refactor request
-title: "[Feature]: "
+name: Update request
+description: File a update request
+title: "[Update]: "
 labels: ["enhancement", "triage"]
 assignees:
   - gouvinb
