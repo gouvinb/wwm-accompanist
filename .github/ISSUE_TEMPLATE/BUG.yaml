@@ -29,7 +29,7 @@ body:
       options:
         - "Yes"
         - "No"
-        - "I don't know" (Default)
+        - I don't know (Default)
     validations:
       required: true
   - type: textarea
