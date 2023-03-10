@@ -8,8 +8,8 @@ import com.github.ajalt.clikt.parameters.types.choice
 import io.github.gouvinb.wwmaccompanist.audio.command.impl.AudioDecreaseCommand
 import io.github.gouvinb.wwmaccompanist.audio.command.impl.AudioIncreaseCommand
 import io.github.gouvinb.wwmaccompanist.audio.command.impl.AudioListSinksCommand
-import io.github.gouvinb.wwmaccompanist.audio.command.impl.AudioSetCommand
 import io.github.gouvinb.wwmaccompanist.audio.command.impl.AudioMuteCommand
+import io.github.gouvinb.wwmaccompanist.audio.command.impl.AudioSetCommand
 import io.github.gouvinb.wwmaccompanist.audio.engine.PactlEngine
 import io.github.gouvinb.wwmaccompanist.audio.engine.PamixerEngine
 

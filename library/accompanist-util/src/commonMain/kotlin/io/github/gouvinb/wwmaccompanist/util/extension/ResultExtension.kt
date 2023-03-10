@@ -6,4 +6,3 @@ fun <T> Result<T>.catchMessageFailure(action: (message: String) -> Unit) =
             ?.let { message -> action(message) }
             ?: throw it
     }
-
