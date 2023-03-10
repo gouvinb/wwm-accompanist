@@ -12,7 +12,7 @@ plugins {
     id("io.github.gouvinb.wwmaccompanist.gradle.project.base.spotless.java")
 }
 
-group = "io.github.gouvinb.wwmaccompanist.command.backlight"
+group = "io.github.gouvinb.wwmaccompanist.audio.command.backlight"
 version = "0.1.0"
 
 repositories {
