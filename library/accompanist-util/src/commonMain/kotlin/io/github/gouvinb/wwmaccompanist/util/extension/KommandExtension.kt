@@ -2,7 +2,6 @@ package io.github.gouvinb.wwmaccompanist.util.extension
 
 import com.kgit2.process.Command
 import com.kgit2.process.Stdio
-import io.ktor.utils.io.errors.*
 
 fun Command.spawnPipe() = this
     .stdout(Stdio.Pipe)
@@ -24,12 +23,12 @@ fun Command.spawnCatching() = runCatching {
                 try {
                     child.getChildStderr()?.readText() to child.wait().code
                 } catch (ex: NullPointerException) {
-                    throw IOException(ex.message ?: "Cannot run command `${prompt()}`", ex)
+                    throw RuntimeException(ex.message ?: "Cannot run command `${prompt()}`", ex)
                 }
             }.takeIf { (_, code) ->
                 code != 0
             }?.let { (childStderr, code) ->
-                throw IOException(
+                throw IllegalStateException(
                     childStderr
                         ?.takeIf { it.isNotBlank() }
                         ?.let { errorOutput ->
@@ -40,7 +39,7 @@ fun Command.spawnCatching() = runCatching {
                             |
                             |Exit with code $code
                             """.trimMargin()
-                        } ?: "The command `${prompt()}` exit with code $code"
+                        } ?: "The command `${prompt()}` exit with code $code",
                 )
             }
         }
