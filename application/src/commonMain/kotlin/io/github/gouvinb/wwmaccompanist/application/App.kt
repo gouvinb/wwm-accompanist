@@ -12,7 +12,7 @@ class App : CliktCommand(
 
     init {
         subcommands(
-            AudioCommand()
+            AudioCommand(),
         )
     }
 
@@ -24,4 +24,3 @@ class App : CliktCommand(
         const val NAME = "wwma"
     }
 }
-
