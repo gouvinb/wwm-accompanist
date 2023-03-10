@@ -12,7 +12,7 @@ plugins {
     id("io.github.gouvinb.wwmaccompanist.gradle.project.base.spotless.java")
 }
 
-group = "io.github.gouvinb.wwmaccompanist.command.audio"
+group = "io.github.gouvinb.wwmaccompanist.audio.command.audio"
 version = "0.1.0"
 
 repositories {
@@ -43,7 +43,14 @@ kotlin {
     sourceSets {
         val selectedTarget = SelectedTarget.getFromProperty()
 
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation(libs.clikt)
+                implementation(libs.kommand)
+
+                implementation(project(":library-accompanist-util"))
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(libs.kotlin.test)

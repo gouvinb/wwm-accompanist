@@ -91,6 +91,8 @@ rootProject.buildFileName = "build.gradle.kts"
 includeProject("application", APP)
 
 // Libs
+includeProject("accompanist-util", LIBRARY)
+
 includeProject("audio", LIBRARY)
 includeProject("backlight", LIBRARY)
 includeProject("bar", LIBRARY)

@@ -1,5 +1,7 @@
 [versions]
 androidGradlePlugin = "7.4.2"
+clikt = "3.5.2"
+kommand = "1.0.1"
 kotlin = "1.8.10"
 # @keep this version, it is used in a ktlint dependency declaration but it used for spotless configuration
 ktlint = "0.48.2"
@@ -7,9 +9,11 @@ spotless = "6.16.0"
 
 [libraries]
 android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "androidGradlePlugin" }
+clikt = { module = "com.github.ajalt.clikt:clikt", version.ref = "clikt" }
 dependencies-versions-gradlePlugin = "com.github.ben-manes:gradle-versions-plugin:0.46.0"
 dependencies-versions-update-gradlePlugin = "nl.littlerobots.vcu:plugin:0.7.0"
 dokka-gradlePlugin = "org.jetbrains.dokka:dokka-gradle-plugin:1.7.20"
+kommand = { module = "com.kgit2:kommand", version.ref = "kommand" }
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 # @keep this library, it not is used in a dependency declaration but it used for spotless configuration
