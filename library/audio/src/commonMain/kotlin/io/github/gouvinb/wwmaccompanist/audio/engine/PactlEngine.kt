@@ -9,6 +9,9 @@ import io.github.gouvinb.wwmaccompanist.util.extension.spawnCatching
 import io.github.gouvinb.wwmaccompanist.util.extension.spawnStdoutToLines
 import kotlin.math.roundToInt
 
+/**
+ * This class defines the basic functionality for audio management using `pactl`.
+ */
 class PactlEngine : AudioEngine {
     override val command
         get() = Command("pactl")

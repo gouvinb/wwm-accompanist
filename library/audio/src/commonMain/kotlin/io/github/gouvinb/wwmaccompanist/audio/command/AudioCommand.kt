@@ -13,6 +13,15 @@ import io.github.gouvinb.wwmaccompanist.audio.command.impl.AudioSetCommand
 import io.github.gouvinb.wwmaccompanist.audio.engine.PactlEngine
 import io.github.gouvinb.wwmaccompanist.audio.engine.PamixerEngine
 
+/**
+ * [AudioCommand] is a command to manage the sound of the Linux system. It contains the following subcommands:
+ *
+ * - [AudioSetCommand] to set a defined sound value
+ * - [AudioMuteCommand] to mute or unmute the sound
+ * - [AudioIncreaseCommand] to increase the sound value
+ * - [AudioDecreaseCommand] to decrease the sound value
+ * - [AudioListSinksCommand] to lists the available sinks for audio output
+ */
 class AudioCommand : CliktCommand(
     name = "audio",
     help = "Audio management",

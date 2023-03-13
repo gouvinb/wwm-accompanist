@@ -7,6 +7,9 @@ import io.github.gouvinb.wwmaccompanist.util.extension.requireOutputText
 import io.github.gouvinb.wwmaccompanist.util.extension.spawnCatching
 import io.github.gouvinb.wwmaccompanist.util.extension.spawnStdoutToLines
 
+/**
+ * This class defines the basic functionality for audio management using `pamixer`.
+ */
 class PamixerEngine : AudioEngine {
     override val command
         get() = Command("pamixer")
