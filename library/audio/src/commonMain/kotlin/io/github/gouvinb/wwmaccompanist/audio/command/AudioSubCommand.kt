@@ -4,6 +4,22 @@ import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.core.requireObject
 import io.github.gouvinb.wwmaccompanist.audio.engine.AudioEngine
 
+/**
+ * This class provides the ability to define subcommands for audio management.
+ *
+ * @param help A string to provide help information about the command.
+ * @param epilog A string to provide additional information at the end of the help.
+ * @param name A string to set the name of the command. If null, the name of the class will be used.
+ * @param invokeWithoutSubcommand A boolean to indicate if the command should be invoked without a subcommand.
+ * @param printHelpOnEmptyArgs A boolean to indicate if help should be printed if no arguments are provided.
+ * @param helpTags A map of strings to add tags to the help.
+ * @param autoCompleteEnvvar A string to set the name of the environment variable that will be used for autocomplete.
+ * @param allowMultipleSubcommands A boolean to indicate if multiple subcommands can be used.
+ * @param treatUnknownOptionsAsArgs A boolean to indicate if unknown options should be treated as arguments.
+ * @param hidden A boolean to indicate if the command should be hidden.
+ *
+ * @property engine defines the module used by wwma for update sound configuration.
+ */
 abstract class AudioSubCommand(
     help: String = "",
     epilog: String = "",
