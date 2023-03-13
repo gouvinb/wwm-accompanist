@@ -34,8 +34,6 @@ class App : CliktCommand(
     override fun run() = Unit
 
     companion object {
-        private const val TAG = "App"
-
         /**
          * The name of the 'wwma' tool.
          */
