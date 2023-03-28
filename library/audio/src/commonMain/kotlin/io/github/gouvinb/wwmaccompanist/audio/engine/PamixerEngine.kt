@@ -17,33 +17,29 @@ class PamixerEngine : AudioEngine {
     override var sink: String? = null
 
     override var volume: Int
-        get() = command.arg("--get-volume")
+        get() = command.args("--get-volume")
             .requireOutputText()
             .catchMessageFailure { message -> throw PrintMessage(message) }
             .getOrThrow()
             .toInt()
-        set(value) {
-            command.args("--allow-boost", "--set-volume", "$value")
-                .spawnCatching()
-                .catchMessageFailure { message -> throw PrintMessage(message) }
-                .getOrThrow()
-        }
+        set(value) = command.args("--allow-boost", "--set-volume", "$value")
+            .spawnCatching()
+            .catchMessageFailure { message -> throw PrintMessage(message) }
+            .getOrThrow()
 
     override var isMute: Boolean
-        get() = command.arg("--get-mute")
+        get() = command.args("--get-mute")
             .requireOutputText()
             .catchMessageFailure { message -> throw PrintMessage(message) }
             .getOrThrow()
             .toBooleanStrict()
-        set(value) {
-            command.arg(if (value) "--mute" else "--unmute")
-                .spawnCatching()
-                .catchMessageFailure { message -> throw PrintMessage(message) }
-                .getOrThrow()
-        }
+        set(value) = command.args(if (value) "--mute" else "--unmute")
+            .spawnCatching()
+            .catchMessageFailure { message -> throw PrintMessage(message) }
+            .getOrThrow()
 
     override fun toggleVolume() {
-        command.arg("--toggle-mute")
+        command.args("--toggle-mute")
             .spawnCatching()
             .catchMessageFailure { message -> throw PrintMessage(message) }
             .getOrThrow()
