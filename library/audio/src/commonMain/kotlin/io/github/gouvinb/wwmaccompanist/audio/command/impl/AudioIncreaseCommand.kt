@@ -5,6 +5,7 @@ import com.github.ajalt.clikt.parameters.arguments.convert
 import com.github.ajalt.clikt.parameters.arguments.help
 import com.github.ajalt.clikt.parameters.arguments.validate
 import io.github.gouvinb.wwmaccompanist.audio.command.AudioCommand.Companion.VOLUME_MAX
+import io.github.gouvinb.wwmaccompanist.audio.command.AudioCommand.Companion.VOLUME_MIN
 import io.github.gouvinb.wwmaccompanist.audio.command.AudioCommand.Companion.VOLUME_RANGE
 import io.github.gouvinb.wwmaccompanist.audio.command.AudioSubCommand
 import kotlin.math.min
@@ -15,10 +16,10 @@ class AudioIncreaseCommand : AudioSubCommand(
     helpTags = mapOf("version" to "0.1.0"),
 ) {
     private val value by argument("value")
-        .help("0..150%")
+        .help("$VOLUME_RANGE%")
         .convert { it.toInt() }
         .validate {
-            require(it in VOLUME_RANGE) { "Must be set between 0 and 150 percent" }
+            require(it in VOLUME_RANGE) { "Must be set between $VOLUME_MIN and $VOLUME_MAX percent" }
         }
 
     override fun run() {
