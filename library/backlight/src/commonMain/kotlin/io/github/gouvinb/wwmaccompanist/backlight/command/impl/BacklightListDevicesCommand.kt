@@ -13,7 +13,7 @@ class BacklightListDevicesCommand : BacklightSubCommand(
                 .ifEmpty { null }
                 ?.toList()
                 ?.joinToString("\n") { "${it.first.padEnd(24)}\t${it.second}" }
-                ?: "No sink found."
+                ?: "No sink found.",
         )
     }
 }

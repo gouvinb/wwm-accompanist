@@ -66,13 +66,13 @@ class BrightnessctlEngine : BacklightEngine {
                 if (line.startsWith("Device ")) {
                     val deviceName = line.substringAfter("Device '").substringBefore("'")
                     map to deviceName
-                } else if (currentDevice!= null && line.contains("Current brightness")) {
+                } else if (currentDevice != null && line.contains("Current brightness")) {
                     val brightnessValue = line.substringAfter("Current brightness: ").substringBefore(" ")
                     val brightnessPercent = line.substringAfter(" (").substringBefore(")")
                     map.apply {
                         put(currentDevice, "$brightnessPercent [$brightnessValue")
                     } to currentDevice
-                } else if (currentDevice!= null && line.contains("Max brightness")) {
+                } else if (currentDevice != null && line.contains("Max brightness")) {
                     val maxValue = line.substringAfter("Max brightness: ")
                     map.apply {
                         val currentValue = get(currentDevice)

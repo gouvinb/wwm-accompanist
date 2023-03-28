@@ -18,7 +18,6 @@ import io.github.gouvinb.wwmaccompanist.backlight.engine.LightEngine
  * [BacklightCommand] is a command to manage the sound of the Linux system. It contains the following subcommands:
  *
  * - [BacklightSetCommand] to set a defined sound value
- * - [BacklightMuteCommand] to mute or unmute the sound
  * - [BacklightIncreaseCommand] to increase the sound value
  * - [BacklightDecreaseCommand] to decrease the sound value
  * - [BacklightListDevicesCommand] to lists the available sinks for audio output
