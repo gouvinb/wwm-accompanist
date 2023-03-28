@@ -2,7 +2,6 @@ package io.github.gouvinb.wwmaccompanist.audio.engine
 
 import com.github.ajalt.clikt.core.PrintMessage
 import com.kgit2.process.Command
-import com.kgit2.process.Stdio
 import io.github.gouvinb.wwmaccompanist.util.extension.catchMessageFailure
 import io.github.gouvinb.wwmaccompanist.util.extension.requireOutputText
 import io.github.gouvinb.wwmaccompanist.util.extension.spawnCatching
@@ -15,7 +14,6 @@ import kotlin.math.roundToInt
 class PactlEngine : AudioEngine {
     override val command
         get() = Command("pactl")
-            .stdout(Stdio.Pipe)
 
     override var sink: String? = null
 
@@ -34,12 +32,10 @@ class PactlEngine : AudioEngine {
                     .average()
                     .roundToInt()
             }
-        set(value) {
-            command.args("set-sink-volume", sink ?: DEFAULT_SINK, "$value%")
-                .spawnCatching()
-                .catchMessageFailure { message -> throw PrintMessage(message) }
-                .getOrThrow()
-        }
+        set(value) = command.args("set-sink-volume", sink ?: DEFAULT_SINK, "$value%")
+            .spawnCatching()
+            .catchMessageFailure { message -> throw PrintMessage(message) }
+            .getOrThrow()
 
     override var isMute: Boolean
         get() = command.args("get-sink-mute", sink ?: DEFAULT_SINK)
