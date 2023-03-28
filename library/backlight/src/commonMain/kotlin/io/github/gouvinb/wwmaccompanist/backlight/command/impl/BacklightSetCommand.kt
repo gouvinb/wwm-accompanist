@@ -13,10 +13,10 @@ import io.github.gouvinb.wwmaccompanist.backlight.command.BacklightSubCommand
 class BacklightSetCommand : BacklightSubCommand(
     name = "set",
     help = "Set the backlight level to a given percentage",
-    helpTags = mapOf("version" to "0.1.1"),
+    helpTags = mapOf("version" to "0.1.2"),
 ) {
     private val value by argument("value")
-        .help("0..100%")
+        .help("$BACKLIGHT_RANGE%")
         .convert { it.toInt() }
         .validate {
             require(it in BACKLIGHT_RANGE) { "Must be set between $BACKLIGHT_MIN and $BACKLIGHT_MAX percent" }

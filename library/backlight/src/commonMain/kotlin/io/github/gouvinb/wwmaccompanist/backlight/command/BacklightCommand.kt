@@ -25,7 +25,7 @@ import io.github.gouvinb.wwmaccompanist.backlight.engine.LightEngine
 class BacklightCommand : CliktCommand(
     name = "backlight",
     help = "Backlight management",
-    helpTags = mapOf("version" to "0.1.1"),
+    helpTags = mapOf("version" to "0.1.2"),
 ) {
     private val engine by option("-e", "--engine", help = "Client used to manage backlight")
         .choice(
