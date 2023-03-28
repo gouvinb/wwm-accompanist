@@ -4,6 +4,7 @@ import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.core.subcommands
 import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.options.required
+import com.github.ajalt.clikt.parameters.options.versionOption
 import com.github.ajalt.clikt.parameters.types.choice
 import io.github.gouvinb.wwmaccompanist.audio.command.impl.AudioDecreaseCommand
 import io.github.gouvinb.wwmaccompanist.audio.command.impl.AudioIncreaseCommand
@@ -43,6 +44,7 @@ class AudioCommand : CliktCommand(
     private val listSinksCommand = AudioListSinksCommand()
 
     init {
+        versionOption("0.1.1")
         subcommands(
             setCommand,
             muteCommand,
