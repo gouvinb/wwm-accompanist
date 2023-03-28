@@ -43,7 +43,14 @@ kotlin {
     sourceSets {
         val selectedTarget = SelectedTarget.getFromProperty()
 
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation(libs.clikt)
+                implementation(libs.kommand)
+
+                implementation(project(":library-accompanist-util"))
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(libs.kotlin.test)
