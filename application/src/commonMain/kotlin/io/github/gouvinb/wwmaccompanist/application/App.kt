@@ -3,6 +3,7 @@ package io.github.gouvinb.wwmaccompanist.application
 import com.github.ajalt.clikt.completion.CompletionCommand
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.core.subcommands
+import com.github.ajalt.clikt.parameters.options.versionOption
 import io.github.gouvinb.wwmaccompanist.audio.command.AudioCommand
 
 /**
@@ -21,6 +22,7 @@ class App : CliktCommand(
     private val audioCommand = AudioCommand()
 
     init {
+        versionOption("0.1.0")
         subcommands(
             completionCommand,
             audioCommand,
