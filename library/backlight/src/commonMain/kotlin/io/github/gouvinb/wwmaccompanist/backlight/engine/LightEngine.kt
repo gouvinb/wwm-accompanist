@@ -2,14 +2,11 @@ package io.github.gouvinb.wwmaccompanist.backlight.engine
 
 import com.github.ajalt.clikt.core.PrintMessage
 import com.kgit2.process.Command
-import com.kgit2.process.Stdio
 import io.github.gouvinb.wwmaccompanist.util.extension.catchMessageFailure
 import io.github.gouvinb.wwmaccompanist.util.extension.requireOutputText
 import io.github.gouvinb.wwmaccompanist.util.extension.spawnCatching
 import io.github.gouvinb.wwmaccompanist.util.extension.spawnStdoutToLines
 import kotlin.math.roundToInt
-import kotlin.time.DurationUnit
-import kotlin.time.toDuration
 
 /**
  * This class defines the basic functionality for audio management using `pactl`.

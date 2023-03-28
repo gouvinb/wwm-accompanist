@@ -4,9 +4,9 @@ import com.github.ajalt.clikt.parameters.arguments.argument
 import com.github.ajalt.clikt.parameters.arguments.convert
 import com.github.ajalt.clikt.parameters.arguments.help
 import com.github.ajalt.clikt.parameters.arguments.validate
-import io.github.gouvinb.wwmaccompanist.backlight.command.BacklightCommand.Companion.BACKLIGHT_RANGE
-import io.github.gouvinb.wwmaccompanist.backlight.command.BacklightCommand.Companion.BACKLIGHT_MIN
 import io.github.gouvinb.wwmaccompanist.backlight.command.BacklightCommand.Companion.BACKLIGHT_MAX
+import io.github.gouvinb.wwmaccompanist.backlight.command.BacklightCommand.Companion.BACKLIGHT_MIN
+import io.github.gouvinb.wwmaccompanist.backlight.command.BacklightCommand.Companion.BACKLIGHT_RANGE
 import io.github.gouvinb.wwmaccompanist.backlight.command.BacklightSubCommand
 
 class BacklightSetCommand : BacklightSubCommand(
