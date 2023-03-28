@@ -26,7 +26,7 @@ import io.github.gouvinb.wwmaccompanist.audio.engine.PamixerEngine
 class AudioCommand : CliktCommand(
     name = "audio",
     help = "Audio management",
-    helpTags = mapOf("version" to "0.1.0"),
+    helpTags = mapOf("version" to "0.1.2"),
 ) {
     private val engine by option("-e", "--engine", help = "Client used to manage audio")
         .choice(
@@ -44,7 +44,7 @@ class AudioCommand : CliktCommand(
     private val listSinksCommand = AudioListSinksCommand()
 
     init {
-        versionOption("0.1.1")
+        versionOption(helpTags["version"]!!)
         subcommands(
             setCommand,
             muteCommand,

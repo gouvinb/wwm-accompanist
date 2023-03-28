@@ -18,6 +18,7 @@ class App : CliktCommand(
     name = NAME,
     epilog = "See '$NAME <command> --help' for more information on a specific command.",
     help = "A custom collection of tools for Wayland WM",
+    helpTags = mapOf("version" to "0.2.1"),
 ) {
     private val completionCommand = CompletionCommand(name = "completion")
 
@@ -25,11 +26,11 @@ class App : CliktCommand(
     private val backlightCommand = BacklightCommand()
 
     init {
-        versionOption("0.1.0")
+        versionOption(helpTags["version"]!!)
         subcommands(
-            completionCommand,
             audioCommand,
             backlightCommand,
+            completionCommand,
         )
     }
 
