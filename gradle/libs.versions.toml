@@ -2,10 +2,10 @@
 androidGradlePlugin = "7.4.2"
 clikt = "3.5.2"
 kommand = "1.0.1"
-kotlin = "1.8.10"
+kotlin = "1.8.20"
 # @keep this version, it is used in a ktlint dependency declaration but it used for spotless configuration
 ktlint = "0.48.2"
-spotless = "6.17.0"
+spotless = "6.18.0"
 
 [libraries]
 android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "androidGradlePlugin" }
