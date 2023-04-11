@@ -13,7 +13,7 @@ plugins {
 }
 
 group = "io.github.gouvinb.wwmaccompanist.audio.command.audio"
-version = "0.1.0"
+version = "0.1.2"
 
 repositories {
     mavenCentral()
