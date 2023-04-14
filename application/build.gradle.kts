@@ -14,7 +14,7 @@ plugins {
 }
 
 group = "io.github.gouvinb.wwmaccompanist.application"
-version = "0.1.0"
+version = "0.3.0"
 
 repositories {
     mavenCentral()
@@ -59,13 +59,16 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(libs.clikt)
-                implementation(project(":library-audio"))
-                implementation(project(":library-backlight"))
-                implementation(project(":library-bar"))
-                implementation(project(":library-launcher"))
-                implementation(project(":library-screenshot"))
-                implementation(project(":library-theme"))
-                implementation(project(":library-wallpaper"))
+
+                implementation(projects.libraryLogger)
+
+                implementation(projects.libraryAudio)
+                implementation(projects.libraryBacklight)
+                implementation(projects.libraryBar)
+                implementation(projects.libraryLauncher)
+                implementation(projects.libraryScreenshot)
+                implementation(projects.libraryTheme)
+                implementation(projects.libraryWallpaper)
             }
         }
         val commonTest by getting {
