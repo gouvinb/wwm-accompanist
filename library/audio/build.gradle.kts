@@ -13,7 +13,7 @@ plugins {
 }
 
 group = "io.github.gouvinb.wwmaccompanist.audio.command.audio"
-version = "0.1.2"
+version = "0.1.3"
 
 repositories {
     mavenCentral()
@@ -48,7 +48,8 @@ kotlin {
                 implementation(libs.clikt)
                 implementation(libs.kommand)
 
-                implementation(project(":library-accompanist-util"))
+                implementation(projects.libraryAccompanistUtil)
+                implementation(projects.libraryLogger)
             }
         }
         val commonTest by getting {

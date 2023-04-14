@@ -26,7 +26,7 @@ import io.github.gouvinb.wwmaccompanist.audio.engine.PamixerEngine
 class AudioCommand : CliktCommand(
     name = "audio",
     help = "Audio management",
-    helpTags = mapOf("version" to "0.1.2"),
+    helpTags = mapOf("version" to "0.1.3"),
 ) {
     private val engine by option("-e", "--engine", help = "Client used to manage audio")
         .choice(
