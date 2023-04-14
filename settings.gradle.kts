@@ -92,6 +92,7 @@ includeProject("application", APP)
 
 // Libs
 includeProject("accompanist-util", LIBRARY)
+includeProject("logger", LIBRARY)
 
 includeProject("audio", LIBRARY)
 includeProject("backlight", LIBRARY)
