@@ -1,5 +1,5 @@
 [versions]
-androidGradlePlugin = "7.4.2"
+androidGradlePlugin = "8.0.0"
 clikt = "3.5.2"
 kommand = "1.0.1"
 kotlin = "1.8.20"
