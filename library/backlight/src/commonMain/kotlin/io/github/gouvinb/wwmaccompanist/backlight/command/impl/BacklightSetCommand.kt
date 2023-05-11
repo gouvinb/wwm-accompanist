@@ -13,7 +13,7 @@ import io.github.gouvinb.wwmaccompanist.backlight.command.BacklightSubCommand
 class BacklightSetCommand : BacklightSubCommand(
     name = "set",
     help = "Set the backlight level to a given percentage",
-    helpTags = mapOf("version" to "0.1.2"),
+    helpTags = mapOf("version" to "0.1.3"),
 ) {
     private val value by argument("value")
         .help("$BACKLIGHT_RANGE%")
@@ -27,6 +27,7 @@ class BacklightSetCommand : BacklightSubCommand(
     }
 
     override fun run() {
+        super.run()
         engine.brightness = value
     }
 }

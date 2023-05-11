@@ -7,13 +7,14 @@ import io.github.gouvinb.wwmaccompanist.logger.presentation.log
 class BacklightListDevicesCommand : BacklightSubCommand(
     name = "list",
     help = "List devices",
-    helpTags = mapOf("version" to "0.1.2"),
+    helpTags = mapOf("version" to "0.1.3"),
 ) {
     init {
         versionOption(helpTags["version"]!!)
     }
 
     override fun run() {
+        super.run()
         log.println {
             engine.listDevices()
                 .ifEmpty { null }
