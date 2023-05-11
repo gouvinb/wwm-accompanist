@@ -2,6 +2,7 @@ package io.github.gouvinb.wwmaccompanist.application
 
 import com.github.ajalt.clikt.completion.CompletionCommand
 import com.github.ajalt.clikt.core.CliktCommand
+import com.github.ajalt.clikt.core.context
 import com.github.ajalt.clikt.core.subcommands
 import com.github.ajalt.clikt.parameters.options.default
 import com.github.ajalt.clikt.parameters.options.flag
@@ -44,6 +45,9 @@ class App : CliktCommand(
     private val backlightCommand = BacklightCommand()
 
     init {
+        context {
+            helpFormatter = WwmAccompanistHelpFormatter
+        }
         versionOption(helpTags["version"]!!)
         subcommands(
             audioCommand,
