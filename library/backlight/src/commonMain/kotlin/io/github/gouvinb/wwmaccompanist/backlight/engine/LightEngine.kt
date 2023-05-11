@@ -2,6 +2,7 @@ package io.github.gouvinb.wwmaccompanist.backlight.engine
 
 import com.github.ajalt.clikt.core.PrintMessage
 import com.kgit2.process.Command
+import io.github.gouvinb.wwmaccompanist.logger.presentation.log
 import io.github.gouvinb.wwmaccompanist.util.extension.catchMessageFailure
 import io.github.gouvinb.wwmaccompanist.util.extension.requireOutputText
 import io.github.gouvinb.wwmaccompanist.util.extension.spawnCatching
@@ -27,6 +28,7 @@ class LightEngine : BacklightEngine {
             .toDouble()
             .roundToInt()
         set(value) = prepareCommand("-S", "$value")
+            .also { log.debug(it.prompt()) }
             .spawnCatching()
             .catchMessageFailure { message -> throw PrintMessage(message) }
             .getOrThrow()
@@ -41,6 +43,7 @@ class LightEngine : BacklightEngine {
 
     override fun save(value: Int) {
         prepareCommand("-O")
+            .also { log.debug(it.prompt()) }
             .spawnCatching()
             .catchMessageFailure { message -> throw PrintMessage(message) }
             .getOrThrow()
@@ -48,6 +51,7 @@ class LightEngine : BacklightEngine {
 
     override fun restore(value: Int) {
         prepareCommand("-I")
+            .also { log.debug(it.prompt()) }
             .spawnCatching()
             .catchMessageFailure { message -> throw PrintMessage(message) }
             .getOrThrow()
@@ -55,6 +59,7 @@ class LightEngine : BacklightEngine {
 
     override fun listDevices(): Map<String, String> {
         command.args("-L")
+            .also { log.debug(it.prompt()) }
             .spawnStdoutToLines()
             .catchMessageFailure { message -> throw PrintMessage(message) }
             .getOrThrow()

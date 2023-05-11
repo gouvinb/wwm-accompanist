@@ -1,8 +1,10 @@
 package io.github.gouvinb.wwmaccompanist.backlight.command
 
+import com.github.ajalt.clikt.core.Abort
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.core.requireObject
 import io.github.gouvinb.wwmaccompanist.backlight.engine.BacklightEngine
+import io.github.gouvinb.wwmaccompanist.logger.presentation.log
 
 /**
  * This class provides the ability to define subcommands for audio management.
@@ -44,4 +46,16 @@ abstract class BacklightSubCommand(
     hidden,
 ) {
     internal val engine by requireObject<BacklightEngine>()
+
+    override fun run() {
+        if (!engine.isEngineAvailable()) {
+            log.println {
+                """
+                |The command ${bold("`${engine.command.command}`")} was not found.
+                |You can install this command if it is not already done and check your ${bold(italic("`PATH`"))} as well as your selected engine to solve this problem.
+                """.trimMargin()
+            }
+            throw Abort()
+        }
+    }
 }

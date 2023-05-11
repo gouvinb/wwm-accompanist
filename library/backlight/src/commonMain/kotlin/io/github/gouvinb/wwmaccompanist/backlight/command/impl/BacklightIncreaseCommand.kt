@@ -14,7 +14,7 @@ import kotlin.math.min
 class BacklightIncreaseCommand : BacklightSubCommand(
     name = "increase",
     help = "Increase the volume to a given percentage",
-    helpTags = mapOf("version" to "0.1.1"),
+    helpTags = mapOf("version" to "0.1.2"),
 ) {
     private val value by argument("value")
         .help("$BACKLIGHT_RANGE")
@@ -28,6 +28,7 @@ class BacklightIncreaseCommand : BacklightSubCommand(
     }
 
     override fun run() {
+        super.run()
         engine.increaseBrightness(min(engine.brightness + value, BACKLIGHT_MAX))
     }
 }
