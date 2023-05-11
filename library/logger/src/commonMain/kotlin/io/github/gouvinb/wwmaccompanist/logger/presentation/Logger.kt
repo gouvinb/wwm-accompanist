@@ -100,6 +100,11 @@ class Logger private constructor(
             return log
         }
 
+        fun reset() {
+            isNotInitialized = true
+            log = Logger.default()
+        }
+
         fun default() = Logger(LoggerLevel.WARNING, false)
     }
 }
