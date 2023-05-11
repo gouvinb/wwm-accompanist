@@ -15,11 +15,6 @@ plugins {
 group = "io.github.gouvinb.wwmaccompanist.util"
 version = "0.2.0"
 
-repositories {
-    mavenCentral()
-    google()
-}
-
 /*
  * Here's the main hierarchy of variants. Any `expect` functions in one level of the tree are
  * `actual` functions in a (potentially indirect) child node.
@@ -49,7 +44,7 @@ kotlin {
                 implementation(libs.kommand)
                 implementation(libs.kotlinx.datetime)
 
-                implementation(projects.libraryEnvironment)
+                implementation(projects.library.environment)
             }
         }
         val commonTest by getting {

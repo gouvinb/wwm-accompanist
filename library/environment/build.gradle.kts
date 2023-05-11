@@ -14,11 +14,6 @@ plugins {
 group = "io.github.gouvinb.wwmaccompanist.environment"
 version = "0.1.0"
 
-repositories {
-    mavenCentral()
-    google()
-}
-
 /*
  * Here's the main hierarchy of variants. Any `expect` functions in one level of the tree are
  * `actual` functions in a (potentially indirect) child node.

@@ -16,11 +16,6 @@ plugins {
 group = "io.github.gouvinb.wwmaccompanist.application"
 version = "0.3.0"
 
-repositories {
-    mavenCentral()
-    google()
-}
-
 /*
  * Here's the main hierarchy of variants. Any `expect` functions in one level of the tree are
  * `actual` functions in a (potentially indirect) child node.
@@ -60,15 +55,15 @@ kotlin {
             dependencies {
                 implementation(libs.clikt)
 
-                implementation(projects.libraryLogger)
+                implementation(projects.library.logger)
 
-                implementation(projects.libraryAudio)
-                implementation(projects.libraryBacklight)
-                implementation(projects.libraryBar)
-                implementation(projects.libraryLauncher)
-                implementation(projects.libraryScreenshot)
-                implementation(projects.libraryTheme)
-                implementation(projects.libraryWallpaper)
+                implementation(projects.library.audio)
+                implementation(projects.library.backlight)
+                implementation(projects.library.bar)
+                implementation(projects.library.launcher)
+                implementation(projects.library.screenshot)
+                implementation(projects.library.theme)
+                implementation(projects.library.wallpaper)
             }
         }
         val commonTest by getting {

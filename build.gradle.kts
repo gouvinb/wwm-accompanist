@@ -5,11 +5,6 @@ plugins {
     `version-catalog`
 }
 
-repositories {
-    mavenCentral()
-    google()
-}
-
 buildscript {
     repositories {
         google()
