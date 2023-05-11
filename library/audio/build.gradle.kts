@@ -13,7 +13,7 @@ plugins {
 }
 
 group = "io.github.gouvinb.wwmaccompanist.audio.command.audio"
-version = "0.1.3"
+version = "0.1.4"
 
 repositories {
     mavenCentral()
@@ -49,6 +49,7 @@ kotlin {
                 implementation(libs.kommand)
 
                 implementation(projects.libraryAccompanistUtil)
+                implementation(projects.libraryEnvironment)
                 implementation(projects.libraryLogger)
             }
         }

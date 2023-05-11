@@ -10,7 +10,7 @@ import io.github.gouvinb.wwmaccompanist.audio.command.AudioSubCommand
 class AudioMuteCommand : AudioSubCommand(
     name = "mute",
     help = "Mute or restore the volume",
-    helpTags = mapOf("version" to "0.1.1"),
+    helpTags = mapOf("version" to "0.1.2"),
 ) {
     val state by argument("state")
         .help("If true or false, then the sound is muted or restored. If the argument is not given then the sound will be switched.")
@@ -22,6 +22,7 @@ class AudioMuteCommand : AudioSubCommand(
     }
 
     override fun run() {
+        super.run()
         when (state) {
             null -> engine.toggleVolume()
             else -> engine.isMute = state!!

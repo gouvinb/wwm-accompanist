@@ -1,6 +1,7 @@
 package io.github.gouvinb.wwmaccompanist.audio.engine
 
 import com.kgit2.process.Command
+import io.github.gouvinb.wwmaccompanist.util.extension.check
 
 /**
  * A sealed interface defining an audio engine.
@@ -18,6 +19,13 @@ sealed interface AudioEngine {
 
     var volume: Int
     var isMute: Boolean
+
+    /**
+     * Checks if the volume engine is available.
+     *
+     * @return true if the engine is available, false otherwise.
+     */
+    fun isEngineAvailable() = command.check()
 
     /**
      * Toggles the volume of the audio.
