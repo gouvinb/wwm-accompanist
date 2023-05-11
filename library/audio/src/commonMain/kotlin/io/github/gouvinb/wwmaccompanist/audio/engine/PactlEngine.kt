@@ -2,6 +2,7 @@ package io.github.gouvinb.wwmaccompanist.audio.engine
 
 import com.github.ajalt.clikt.core.PrintMessage
 import com.kgit2.process.Command
+import io.github.gouvinb.wwmaccompanist.logger.presentation.log
 import io.github.gouvinb.wwmaccompanist.util.extension.catchMessageFailure
 import io.github.gouvinb.wwmaccompanist.util.extension.requireOutputText
 import io.github.gouvinb.wwmaccompanist.util.extension.spawnCatching
@@ -33,6 +34,7 @@ class PactlEngine : AudioEngine {
                     .roundToInt()
             }
         set(value) = command.args("set-sink-volume", sink ?: DEFAULT_SINK, "$value%")
+            .also { log.debug(it.prompt()) }
             .spawnCatching()
             .catchMessageFailure { message -> throw PrintMessage(message) }
             .getOrThrow()
@@ -45,6 +47,7 @@ class PactlEngine : AudioEngine {
             .endsWith("yes")
         set(value) {
             command.args("set-sink-mute", sink ?: DEFAULT_SINK, if (value) "1" else "0")
+                .also { log.debug(it.prompt()) }
                 .spawnCatching()
                 .catchMessageFailure { message -> throw PrintMessage(message) }
                 .getOrThrow()
@@ -52,6 +55,7 @@ class PactlEngine : AudioEngine {
 
     override fun toggleVolume() {
         command.args("set-sink-mute", sink ?: DEFAULT_SINK, "toggle")
+            .also { log.debug(it.prompt()) }
             .spawnCatching()
             .catchMessageFailure { message -> throw PrintMessage(message) }
             .getOrThrow()
@@ -67,6 +71,7 @@ class PactlEngine : AudioEngine {
 
     override fun listSinks(): Map<String, String> =
         command.args("list", "sinks")
+            .also { log.debug(it.prompt()) }
             .spawnStdoutToLines()
             .catchMessageFailure { message -> throw PrintMessage(message) }
             .getOrThrow()

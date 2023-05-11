@@ -2,6 +2,7 @@ package io.github.gouvinb.wwmaccompanist.audio.engine
 
 import com.github.ajalt.clikt.core.PrintMessage
 import com.kgit2.process.Command
+import io.github.gouvinb.wwmaccompanist.logger.presentation.log
 import io.github.gouvinb.wwmaccompanist.util.extension.catchMessageFailure
 import io.github.gouvinb.wwmaccompanist.util.extension.requireOutputText
 import io.github.gouvinb.wwmaccompanist.util.extension.spawnCatching
@@ -23,6 +24,7 @@ class PamixerEngine : AudioEngine {
             .getOrThrow()
             .toInt()
         set(value) = command.args("--allow-boost", "--set-volume", "$value")
+            .also { log.debug(it.prompt()) }
             .spawnCatching()
             .catchMessageFailure { message -> throw PrintMessage(message) }
             .getOrThrow()
@@ -34,12 +36,14 @@ class PamixerEngine : AudioEngine {
             .getOrThrow()
             .toBooleanStrict()
         set(value) = command.args(if (value) "--mute" else "--unmute")
+            .also { log.debug(it.prompt()) }
             .spawnCatching()
             .catchMessageFailure { message -> throw PrintMessage(message) }
             .getOrThrow()
 
     override fun toggleVolume() {
         command.args("--toggle-mute")
+            .also { log.debug(it.prompt()) }
             .spawnCatching()
             .catchMessageFailure { message -> throw PrintMessage(message) }
             .getOrThrow()
@@ -47,6 +51,7 @@ class PamixerEngine : AudioEngine {
 
     override fun increaseVolume(value: Int) {
         command.args("--allow-boost", "--increase", "$value")
+            .also { log.debug(it.prompt()) }
             .spawnCatching()
             .catchMessageFailure { message -> throw PrintMessage(message) }
             .getOrThrow()
@@ -54,6 +59,7 @@ class PamixerEngine : AudioEngine {
 
     override fun decreaseVolume(value: Int) {
         command.args("--allow-boost", "--decrease", "$value")
+            .also { log.debug(it.prompt()) }
             .spawnCatching()
             .catchMessageFailure { message -> throw PrintMessage(message) }
             .getOrThrow()
@@ -61,6 +67,7 @@ class PamixerEngine : AudioEngine {
 
     override fun listSinks() =
         command.args("--list-sinks")
+            .also { log.debug(it.prompt()) }
             .spawnStdoutToLines()
             .catchMessageFailure { message -> throw PrintMessage(message) }
             .getOrThrow()

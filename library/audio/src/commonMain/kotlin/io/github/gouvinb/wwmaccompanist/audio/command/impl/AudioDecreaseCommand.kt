@@ -14,7 +14,7 @@ import kotlin.math.max
 class AudioDecreaseCommand : AudioSubCommand(
     name = "decrease",
     help = "Decrease the volume to a given percentage",
-    helpTags = mapOf("version" to "0.1.1"),
+    helpTags = mapOf("version" to "0.1.2"),
 ) {
     private val value by argument("value")
         .help("$VOLUME_RANGE%")
@@ -28,6 +28,7 @@ class AudioDecreaseCommand : AudioSubCommand(
     }
 
     override fun run() {
+        super.run()
         engine.increaseVolume(max(engine.volume - value, VOLUME_MIN))
     }
 }
