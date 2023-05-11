@@ -13,7 +13,7 @@ plugins {
 }
 
 group = "io.github.gouvinb.wwmaccompanist.util"
-version = "0.1.0"
+version = "0.2.0"
 
 repositories {
     mavenCentral()
@@ -47,6 +47,9 @@ kotlin {
             dependencies {
                 implementation(libs.clikt)
                 implementation(libs.kommand)
+                implementation(libs.kotlinx.datetime)
+
+                implementation(projects.libraryEnvironment)
             }
         }
         val commonTest by getting {
