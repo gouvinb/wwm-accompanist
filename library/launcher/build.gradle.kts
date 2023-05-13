@@ -7,9 +7,9 @@ import io.github.gouvinb.wwmaccompanist.gradle.project.utils.extenstion.createSo
 plugins {
     kotlin("multiplatform")
 
-    id("io.github.gouvinb.wwmaccompanist.gradle.project.base.main")
-    id("io.github.gouvinb.wwmaccompanist.gradle.project.base.dokka")
-    id("io.github.gouvinb.wwmaccompanist.gradle.project.base.spotless.java")
+    id("io.github.gouvinb.wwmaccompanist.gradle.project.plugins.main")
+    id("io.github.gouvinb.wwmaccompanist.gradle.project.plugins.dokka")
+    id("io.github.gouvinb.wwmaccompanist.gradle.project.plugins.spotless.java")
 }
 
 group = "io.github.gouvinb.wwmaccompanist.audio.command.launcher"

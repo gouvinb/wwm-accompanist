@@ -8,13 +8,13 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 plugins {
     kotlin("multiplatform")
 
-    id("io.github.gouvinb.wwmaccompanist.gradle.project.base.main")
-    id("io.github.gouvinb.wwmaccompanist.gradle.project.base.dokka")
-    id("io.github.gouvinb.wwmaccompanist.gradle.project.base.spotless.java")
+    id("io.github.gouvinb.wwmaccompanist.gradle.project.plugins.main")
+    id("io.github.gouvinb.wwmaccompanist.gradle.project.plugins.dokka")
+    id("io.github.gouvinb.wwmaccompanist.gradle.project.plugins.spotless.java")
 }
 
 group = "io.github.gouvinb.wwmaccompanist.application"
-version = "0.3.0"
+version = "0.4.0"
 
 /*
  * Here's the main hierarchy of variants. Any `expect` functions in one level of the tree are
@@ -34,7 +34,7 @@ version = "0.3.0"
  * platforms and as a test source set on the JVM platform.
  */
 kotlin {
-    configureOrCreateNativePlatforms(jsCompilerType = IR)
+    configureOrCreateNativePlatforms()
         .forEach { kotlinTarget ->
             when (kotlinTarget) {
                 is KotlinNativeTarget -> kotlinTarget.apply {
