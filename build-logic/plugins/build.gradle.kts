@@ -6,34 +6,43 @@ plugins {
 group = "io.github.gouvinb.wwmaccompanist.gradle"
 
 dependencies {
-    implementation(libs.android.gradlePlugin)
-    implementation(libs.dokka.gradlePlugin)
-    implementation(libs.kotlin.gradlePlugin)
-    implementation(libs.spotless.gradlePlugin)
+    compileOnly(libs.android.gradlePlugin)
+    compileOnly(libs.dokka.gradlePlugin)
+    compileOnly(libs.kotlin.gradlePlugin)
+    compileOnly(libs.spotless.gradlePlugin)
+    compileOnly(libs.dependencies.versions.gradlePlugin)
+    compileOnly(libs.dependencies.versions.update.gradlePlugin)
+
 }
 
 gradlePlugin {
     plugins {
         // Main
         register("main") {
-            id = "io.github.gouvinb.wwmaccompanist.gradle.project.base.main"
-            implementationClass = "io.github.gouvinb.wwmaccompanist.gradle.project.base.MainPlugin"
+            id = "io.github.gouvinb.wwmaccompanist.gradle.project.plugins.main"
+            implementationClass = "io.github.gouvinb.wwmaccompanist.gradle.project.plugins.MainPlugin"
         }
 
         // Dokka
         register("dokka") {
-            id = "io.github.gouvinb.wwmaccompanist.gradle.project.base.dokka"
-            implementationClass = "io.github.gouvinb.wwmaccompanist.gradle.project.base.DokkaPlugin"
+            id = "io.github.gouvinb.wwmaccompanist.gradle.project.plugins.dokka"
+            implementationClass = "io.github.gouvinb.wwmaccompanist.gradle.project.plugins.DokkaPlugin"
         }
 
         // Spotless
         register("javaSpotless") {
-            id = "io.github.gouvinb.wwmaccompanist.gradle.project.base.spotless.java"
-            implementationClass = "io.github.gouvinb.wwmaccompanist.gradle.project.base.SpotlessJavaPlugin"
+            id = "io.github.gouvinb.wwmaccompanist.gradle.project.plugins.spotless.java"
+            implementationClass = "io.github.gouvinb.wwmaccompanist.gradle.project.plugins.SpotlessJavaPlugin"
         }
         register("androidSpotless") {
-            id = "io.github.gouvinb.wwmaccompanist.gradle.project.base.spotless.android"
-            implementationClass = "io.github.gouvinb.wwmaccompanist.gradle.project.base.SpotlessAndroidPlugin"
+            id = "io.github.gouvinb.wwmaccompanist.gradle.project.plugins.spotless.android"
+            implementationClass = "io.github.gouvinb.wwmaccompanist.gradle.project.plugins.SpotlessAndroidPlugin"
+        }
+
+        // Version Catalog
+        register("dependencies") {
+            id = "io.github.gouvinb.wwmaccompanist.gradle.project.plugins.dependencies"
+            implementationClass = "io.github.gouvinb.wwmaccompanist.gradle.project.plugins.DependenciesPlugin"
         }
     }
 }

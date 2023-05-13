@@ -1,10 +1,3 @@
-import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
-import nl.littlerobots.vcu.plugin.versionCatalogUpdate
-
-plugins {
-    `version-catalog`
-}
-
 buildscript {
     repositories {
         google()
@@ -22,25 +15,7 @@ buildscript {
     }
 }
 
-apply(plugin = "com.github.ben-manes.versions")
-apply(plugin = "nl.littlerobots.version-catalog-update")
-
-// https://github.com/ben-manes/gradle-versions-plugin
-tasks.withType<DependencyUpdatesTask> {
-    fun isNonStable(version: String): Boolean {
-        val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.uppercase().contains(it) }
-        val regex = "^[0-9,.v-]+(-r)?$".toRegex()
-        val isStable = stableKeyword || regex.matches(version)
-        return isStable.not()
-    }
-
-    rejectVersionIf {
-        isNonStable(candidate.version)
-    }
-}
-
-versionCatalogUpdate {
-    keep {
-        version
-    }
+plugins {
+    `version-catalog`
+    id("io.github.gouvinb.wwmaccompanist.gradle.project.plugins.dependencies")
 }

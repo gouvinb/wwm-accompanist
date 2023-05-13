@@ -1,4 +1,4 @@
-package io.github.gouvinb.wwmaccompanist.gradle.project.base
+package io.github.gouvinb.wwmaccompanist.gradle.project.plugins
 
 import com.diffplug.gradle.spotless.SpotlessExtension
 import org.gradle.api.Plugin

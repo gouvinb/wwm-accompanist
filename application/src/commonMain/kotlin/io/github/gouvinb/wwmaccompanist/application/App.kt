@@ -13,6 +13,7 @@ import io.github.gouvinb.wwmaccompanist.audio.command.AudioCommand
 import io.github.gouvinb.wwmaccompanist.backlight.command.BacklightCommand
 import io.github.gouvinb.wwmaccompanist.logger.data.model.LoggerLevel
 import io.github.gouvinb.wwmaccompanist.logger.presentation.Logger
+import io.github.gouvinb.wwmaccompanist.screenshot.command.ScreenshotCommand
 import platform.posix.STDIN_FILENO
 import platform.posix.isatty
 
@@ -27,7 +28,7 @@ class App : CliktCommand(
     name = NAME,
     epilog = "See '$NAME <command> --help' for more information on a specific command.",
     help = "A custom collection of tools for Wayland WM",
-    helpTags = mapOf("version" to "0.3.0"),
+    helpTags = mapOf("version" to "0.4.0"),
 ) {
     private val loggerLevel by option("--verbose", "-v", help = "Set the verbose level")
         .enum<LoggerLevel>(key = { it.name.lowercase() })
@@ -43,6 +44,7 @@ class App : CliktCommand(
 
     private val audioCommand = AudioCommand()
     private val backlightCommand = BacklightCommand()
+    private val screenshotCommand = ScreenshotCommand()
 
     init {
         context {
@@ -52,6 +54,7 @@ class App : CliktCommand(
         subcommands(
             audioCommand,
             backlightCommand,
+            screenshotCommand,
             completionCommand,
         )
     }
