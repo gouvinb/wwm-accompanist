@@ -42,6 +42,7 @@ kotlin {
             dependencies {
                 implementation(libs.clikt)
                 implementation(libs.kommand)
+                implementation(libs.kotlinx.datetime)
 
                 implementation(projects.library.accompanistUtil)
                 implementation(projects.library.logger)
