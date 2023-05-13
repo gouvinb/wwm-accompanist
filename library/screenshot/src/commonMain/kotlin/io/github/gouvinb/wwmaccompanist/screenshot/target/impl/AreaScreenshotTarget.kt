@@ -21,11 +21,11 @@ class AreaScreenshotTarget : ScreenshotTarget<AreaTargetData>() {
      */
     override val geometry: String by lazy {
         slurpCommand()
-        .args("-d")
-        .also { log.debug(it.prompt()) }
-        .spawnStdoutToString(stdin = StdioImpl.Null)
-        .catchMessageFailure { message -> throw PrintMessage(message) }
-        .getOrThrow()
+            .args("-d")
+            .also { log.debug(it.prompt()) }
+            .spawnStdoutToString(stdin = StdioImpl.Null)
+            .catchMessageFailure { message -> throw PrintMessage(message) }
+            .getOrThrow()
     }
 
     /**

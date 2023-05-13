@@ -11,21 +11,21 @@ import io.github.gouvinb.wwmaccompanist.util.kommand.StdioImpl
 class WindowScreenshotTarget : ScreenshotTarget<WindowTargetData>() {
     override val geometry: String by lazy {
         slurpCommand()
-        .args("-r", ".name")
-        .also { log.debug(it.prompt()) }
-        .spawnStdoutToString(
-            stdin = StdioImpl.Pipe(
-                jqCommand()
-                    .args("-r", """.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"""")
-                    .spawnStdoutToString(stdin = StdioImpl.Pipe(stdinStr = swaymsgGetTree()))
-                    .catchMessageFailure { message -> throw PrintMessage(message) }
-                    .getOrThrow(),
-            ),
-        )
-        .catchMessageFailure { message -> throw PrintMessage(message) }
-        .getOrThrow()
-        .takeIf { it.isNotEmpty() }
-        ?: throw PrintMessage("Slurp without selecting the area.")
+            .args("-r", ".name")
+            .also { log.debug(it.prompt()) }
+            .spawnStdoutToString(
+                stdin = StdioImpl.Pipe(
+                    jqCommand()
+                        .args("-r", """.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"""")
+                        .spawnStdoutToString(stdin = StdioImpl.Pipe(stdinStr = swaymsgGetTree()))
+                        .catchMessageFailure { message -> throw PrintMessage(message) }
+                        .getOrThrow(),
+                ),
+            )
+            .catchMessageFailure { message -> throw PrintMessage(message) }
+            .getOrThrow()
+            .takeIf { it.isNotEmpty() }
+            ?: throw PrintMessage("Slurp without selecting the area.")
     }
 
     override val what: String

@@ -64,9 +64,9 @@ abstract class ScreenshotTarget<T : ScreenshotTarget.TargetData> {
                 val stdinByteArray = grimCommand()
                     .run {
                         when {
-                            geometry.isNotBlank() -> args("-g", data.target, "-")
-                            data.target.isNotBlank() -> args("-o", data.target, "-")
-                            else -> args("-")
+                            geometry.isNotBlank() -> args("-g", data.target, REDIRECT_OUTPUT_PATH)
+                            data.target.isNotBlank() -> args("-o", data.target, REDIRECT_OUTPUT_PATH)
+                            else -> args(REDIRECT_OUTPUT_PATH)
                         }
                     }
                     .also { log.debug(it.prompt()) }
@@ -78,7 +78,7 @@ abstract class ScreenshotTarget<T : ScreenshotTarget.TargetData> {
                     .also { log.debug(it.prompt()) }
                     .spawnCatching(
                         stderr = StdioImpl.Null,
-                        stdin = StdioImpl.Pipe(stdinByteArray = stdinByteArray)
+                        stdin = StdioImpl.Pipe(stdinByteArray = stdinByteArray),
                     )
                     .catchMessageFailure { message -> throw PrintMessage(message) }
                     .getOrThrow()
