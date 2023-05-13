@@ -12,7 +12,6 @@ dependencies {
     compileOnly(libs.spotless.gradlePlugin)
     compileOnly(libs.dependencies.versions.gradlePlugin)
     compileOnly(libs.dependencies.versions.update.gradlePlugin)
-
 }
 
 gradlePlugin {
