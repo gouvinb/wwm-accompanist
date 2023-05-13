@@ -18,20 +18,20 @@ class OutputScreenshotTarget : ScreenshotTarget<OutputTargetData>() {
      */
     val output: String by lazy {
         jqCommand()
-        .args("-r", ".name")
-        .also { log.debug(it.prompt()) }
-        .spawnStdoutToString(
-            stdin = StdioImpl.Pipe(
-                jqCommand()
-                    .args("-r", ".[] | select(.focused)")
-                    .also { log.debug(it.prompt()) }
-                    .spawnStdoutToString(stdin = StdioImpl.Pipe(stdinStr = swaymsgGetOutputs()))
-                    .catchMessageFailure { message -> throw PrintMessage(message) }
-                    .getOrThrow(),
-            ),
-        )
-        .catchMessageFailure { message -> throw PrintMessage(message) }
-        .getOrThrow()
+            .args("-r", ".name")
+            .also { log.debug(it.prompt()) }
+            .spawnStdoutToString(
+                stdin = StdioImpl.Pipe(
+                    jqCommand()
+                        .args("-r", ".[] | select(.focused)")
+                        .also { log.debug(it.prompt()) }
+                        .spawnStdoutToString(stdin = StdioImpl.Pipe(stdinStr = swaymsgGetOutputs()))
+                        .catchMessageFailure { message -> throw PrintMessage(message) }
+                        .getOrThrow(),
+                ),
+            )
+            .catchMessageFailure { message -> throw PrintMessage(message) }
+            .getOrThrow()
     }
 
     /**

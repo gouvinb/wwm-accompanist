@@ -1,7 +1,6 @@
 package io.github.gouvinb.wwmaccompanist.util.extension
 
 import com.kgit2.process.Child
-import com.kgit2.process.ChildOptions
 import com.kgit2.process.Command
 import io.github.gouvinb.wwmaccompanist.env.EnvPath
 import io.github.gouvinb.wwmaccompanist.util.kommand.StdioImpl
@@ -71,8 +70,10 @@ fun Command.requireOutput(
     stderr: StdioImpl = StdioImpl.Pipe(),
     stdin: StdioImpl = StdioImpl.Inherit,
 ) = spawnWithStdio(stdout, stderr, stdin).runCatching {
-    (getChildStdout()?.readBytes()
-        ?: throw NullPointerException("Cannot read the output of the following command: `${prompt()}}`"))
+    (
+        getChildStdout()?.readBytes()
+            ?: throw NullPointerException("Cannot read the output of the following command: `${prompt()}}`")
+        )
         .apply { waitWithOutput() }
 }
 
