@@ -17,15 +17,15 @@ class MainPlugin : Plugin<Project> {
 
             tasks.withType<KotlinCompile>().configureEach {
                 kotlinOptions {
-                    jvmTarget = JavaVersion.VERSION_11.toString()
+                    jvmTarget = JavaVersion.VERSION_17.toString()
                     freeCompilerArgs += "-Xjvm-default=all"
                 }
             }
 
             tasks.withType<JavaCompile> {
                 options.encoding = StandardCharsets.UTF_8.toString()
-                sourceCompatibility = JavaVersion.VERSION_11.toString()
-                targetCompatibility = JavaVersion.VERSION_11.toString()
+                sourceCompatibility = JavaVersion.VERSION_17.toString()
+                targetCompatibility = JavaVersion.VERSION_17.toString()
             }
 
             tasks.withType<Test> {

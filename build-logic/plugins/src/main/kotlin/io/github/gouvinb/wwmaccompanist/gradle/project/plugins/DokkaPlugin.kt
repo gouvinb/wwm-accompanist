@@ -17,7 +17,7 @@ class DokkaPlugin : Plugin<Project> {
 
                     reportUndocumented.set(true)
                     skipDeprecated.set(true)
-                    jdkVersion.set(JavaVersion.VERSION_11.toString().toInt())
+                    jdkVersion.set(JavaVersion.VERSION_17.toString().toInt())
                     perPackageOption {
                         matchingRegex.set("""io\.github\.wwmaccompanist\..*\.internal.*""")
                         suppress.set(true)
