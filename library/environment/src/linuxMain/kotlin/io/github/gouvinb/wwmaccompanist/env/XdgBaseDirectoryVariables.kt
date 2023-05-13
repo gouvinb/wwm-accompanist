@@ -26,5 +26,5 @@ actual open class XdgBaseDirectoryVariables : EnvironmentVariables() {
     actual val xdgDataDirs: String = getenv("XDG_DATA_DIRS")?.toKString() ?: "/usr/local/share:/usr/share"
     actual val xdgConfigDirs: String = getenv("XDG_CONFIG_DIRS")?.toKString() ?: "/etc/xdg"
 
-    actual val tmpDir: String = getenv("TPMDIR")?.toKString() ?: "/tmp/"
+    actual val tmpDir: String = getenv("TMPDIR")?.toKString() ?: "/tmp/"
 }
